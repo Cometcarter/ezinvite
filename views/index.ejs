@@ -84,7 +84,12 @@
           <h2>This is <span>EzInvite</span> Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
           <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed qui libero.
             Qui voluptas amet.</p>
-          <a href="upload.html" class="btn-get-started">Upload an Event</a>
+          <% if (user) { %>
+            <a href="/profile" class="btn-get-started">Upload an Event</a>
+            <% } else { %>
+
+              <a class="btn-get-started" href="/signup">Sign Up</a>
+              <% }%>
         </div>
       </div>
     </div>
@@ -97,30 +102,7 @@
     <!-- ======= Gallery Section ======= -->
     <section>
       <ul class="d-flex flex-row flex-wrap">
-        <% for (let i=0; i<main.length; i++) {%>
-          <div class="card-body bg-light">
-            <h2 class="card-title">
-              <%= main[i].eventtitle%>
-            </h2>
-            <li class="card-text mb-2 text-muted container-back">
-              <p>
-                <%= main[i].eventlocation%>
-              </p>
-              <p>
-                <%= main[i].eventdate%>
-              </p>
-              <p>
-                <%= main[i].eventdescription%>
-              </p>
-              <p>
-                <%= main[i].eventcapacity%>
-              </p>
-              <button class="btn btn-light" type="button" onclick="editEvent('<%= main[i]._id%>')">Edit</button>
-              <button class="btn btn-light" type="button" onclick="deleteEvent('<%= main[i]._id%>')">Delete</button>
-            </li>
-          </div>
 
-          <% } %>
       </ul>
       <div class="container-fluid" id="gallery" class="gallery">
 

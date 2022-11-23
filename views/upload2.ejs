@@ -1,0 +1,70 @@
+<%- include('partials/header') -%>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-6">
+        <div>
+          <p><strong>User Name</strong>: <%= user.userName %>
+          </p>
+          <p><strong>Email</strong>: <%= user.email %>
+          </p>
+          <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+        </div>
+        <div class="mt-5">
+          <h2>Add a post</h2>
+          <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="eventtitle" class="form-control" id="name" placeholder="Title of Event"
+                  required>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="number" name="eventcapacity" class="form-control" id="numberofpeople"
+                  placeholder="Capacity" required>
+              </div>
+              <!-- <div class="col-md-6 form-group">
+              <input type="file" name="name" class="form-control" id="eventimg" placeholder="Picture for Event"
+                required>
+            </div> -->
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="text" class="form-control" name="eventlocation" id="location" placeholder="Location"
+                  required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="datetime-local" class="form-control" name="eventdate" id="date" placeholder="Date" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="eventdescription" rows="5" placeholder="Description"
+                required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="imgUpload" class="form-label">Image</label>
+              <input type="file" class="form-control" id="imageUpload" name="file">
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your event has been uploaded. WHoo!</div>
+            </div>
+            <div class="text-center"><button type="submit">Upload Event</button></div>
+          </form>
+        </div>
+      </div>
+      <div class="col-6">
+        <ul class="row list-unstyled">
+          <% for(var i=0; i<post.length; i++) {%>
+            <li class="col-6 justify-content-between mt-5">
+              <a href="/post/<%= post[i]._id%>">
+                <img class="img-fluid" src="<%= post[i].image%>">
+              </a>
+            </li>
+            <% } %>
+        </ul>
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <%- include('partials/footer') -%>

@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  title: {
+  eventtitle: {
     type: String,
     required: true,
   },
-  image: {
+  capacity: {
     type: String,
     required: true,
   },
@@ -13,12 +13,20 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  caption: {
+  location: {
     type: String,
     required: true,
   },
-  likes: {
-    type: Number,
+  date: {
+    type: Date,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
     required: true,
   },
   user: {

@@ -24,23 +24,27 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      const comment = await Comment.find({postid: req.params.id});
-      res.render("post.ejs", { post: post, user: req.user, comment: comment});
+      const comment = await Comment.find({ postid: req.params.id });
+      res.render("post.ejs", { post: post, user: req.user, comment: comment });
     } catch (err) {
       console.log(err);
     }
   },
   createPost: async (req, res) => {
+    console.log(req)
     try {
       // Upload image to cloudinary
+
       const result = await cloudinary.uploader.upload(req.file.path);
 
       await Post.create({
-        title: req.body.title,
-        image: result.secure_url,
+        eventtitle: req.body.eventtitle,
+        capacity: req.body.capacity,
         cloudinaryId: result.public_id,
-        caption: req.body.caption,
-        likes: 0,
+        location: req.body.location,
+        date: req.body.date,
+        description: req.body.description,
+        image: result.secure_url,
         user: req.user.id,
       });
       console.log("Post has been added!");
