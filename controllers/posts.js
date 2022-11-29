@@ -1,6 +1,5 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const Comment = require("../models/comment");
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -8,7 +7,7 @@ module.exports = {
       const post = await Post.find({ user: req.user.id });
       //we're inside the controller, here on line 7 the controller is using the model
       //its saying only find the post with the id that is equal to the logged in user's id
-      res.render("profile.ejs", { post: post, user: req.user });
+      res.render("gallery.ejs", { post: post, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -24,14 +23,15 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      const comment = await Comment.find({ postid: req.params.id });
-      res.render("post.ejs", { post: post, user: req.user, comment: comment });
+      res.render("gallery-single.ejs", { 
+        post: post, 
+        user: req.user
+      })
     } catch (err) {
       console.log(err);
     }
   },
   createPost: async (req, res) => {
-    console.log(req)
     try {
       // Upload image to cloudinary
 
@@ -48,7 +48,7 @@ module.exports = {
         user: req.user.id,
       });
       console.log("Post has been added!");
-      res.redirect("/profile");
+      res.redirect("/gallery");
     } catch (err) {
       console.log(err);
     }
@@ -76,9 +76,9 @@ module.exports = {
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/profile");
+      res.redirect("/gallery");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/gallery");
     }
   },
 };

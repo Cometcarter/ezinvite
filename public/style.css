@@ -7,8 +7,8 @@ img {
   height: 200px;
 }
 
-#gallery {
-  display: none;
+.gallery-card {
+  max-height: 245px;
 }
 
 .card-body {
@@ -21,6 +21,14 @@ img {
   color: black
 }
 
-ul {
+/* ul {
   height: 20rem;
+} */
+
+.modal {
+  z-index: top;
+}
+
+.modal-backdrop {
+  display: none !important;
 }

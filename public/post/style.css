@@ -1,0 +1,26 @@
+body {
+  padding-top: 80px;
+  word-wrap: break-word;
+}
+
+img {
+  height: 200px;
+}
+
+.gallery-card {
+max-height: 245px;
+}
+
+.card-body {
+  max-width: 15rem;
+  min-width: 15rem;
+  height: 20rem;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  color: black
+}
+
+/* ul {
+  height: 20rem;
+} */
