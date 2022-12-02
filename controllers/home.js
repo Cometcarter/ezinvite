@@ -1,23 +1,31 @@
 const Post = require("../models/Post");
 
 module.exports = {
-  getIndex: (req, res) => {
-    res.render("index.ejs",{ user: req.user});
+  getIndex: async (req, res) => {
+    try {
+      const posts = await Post.find()
+      res.render("index.ejs",{
+        posts: posts,
+        user: req.user
+      })
+    } catch (err) {
+      console.log(err);
+    }
   },
   getGallery: async (req, res) => {
-    const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-    res.render("gallery.ejs",{ 
+    const posts = await Post.find({ user: req.user.id });
+    res.render("gallery.ejs", {
       user: req.user,
       posts: posts
     });
   },
   getAbout: (req, res) => {
-    res.render("about.ejs",{ user: req.user});
+    res.render("about.ejs", { user: req.user });
   },
   getServices: (req, res) => {
-    res.render("services.ejs",{ user: req.user});
+    res.render("services.ejs", { user: req.user });
   },
   getUpload: (req, res) => {
-    res.render("upload.ejs",{ user: req.user});
+    res.render("upload.ejs", { user: req.user });
   },
 };

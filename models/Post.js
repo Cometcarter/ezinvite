@@ -3,31 +3,47 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema({
   eventtitle: {
     type: String,
-    required: true,
+    required: false,
   },
-  capacity: {
+  address: {
     type: String,
-    required: true,
+    required: false,
   },
-  cloudinaryId: {
+  phonenumber: {
     type: String,
-    required: true,
+    required: false,
   },
   location: {
     type: String,
-    required: true,
+    required: false,
   },
   date: {
     type: Date,
-    required: true,
+    required: false,
   },
-  description: {
+  capacity: {
     type: String,
-    required: true,
+    required: false,
+  },
+  cloudinaryId: {
+    type: String,
+    required: false,
   },
   image: {
     type: String,
-    required: true,
+    required: false,
+  },
+  requests: {
+    type: [String],
+    required: false,
+  },
+  attendees: {
+    type: [String],
+    required: false,
+  },
+  description: {
+    type: String,
+    required: false,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

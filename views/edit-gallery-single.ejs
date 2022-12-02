@@ -1,0 +1,69 @@
+<%- include('partials/header') -%>
+
+  <main id="main" data-aos="fade" data-aos-delay="1500">
+
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+      <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2>Gallery Single</h2>
+            <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a
+              odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum
+              dolorem.</p>
+
+          </div>
+        </div>
+      </div>
+    </div><!-- End Page Header -->
+
+    <!-- ======= Gallery Single Section ======= -->
+    <section id="gallery-single" class="gallery-single">
+      <div class="container ">
+
+        <div class="row justify-content-between gy-4 mt-4">
+
+          <div class="col-lg-4">
+            <img src="<%= post.image%>">
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Event information</h3>
+              <ul>
+                <li><strong>Title</strong> 
+                  <input class="newtitle" type="text" value="<%= post.eventtitle%>" >
+                </li>
+                <li><strong>City and State</strong> 
+                    <input class="newlocation" type="text" value="<%= post.location%>">
+                </li>
+                <li><strong>Address</strong> 
+                    <input class="newaddress" type="text" value="<%= post.address%>">
+                </li>
+                <li><strong>Phone Number</strong> 
+                    <input class="newphonenumber" type="text" value="<%= post.phonenumber%>">
+                </li>
+                <li><strong>Date</strong> 
+                    <input class="newdate" type="date" valueAsDate="<%= post.date%>"> Original Date: <%= post.date%>
+                </li>
+                <li><strong>Description</strong> 
+                    <textarea class="newdescription" ><%= post.description%>
+                  </textarea>
+                </li>
+                <li><strong>Number of Attendees</strong> 
+                    <input class="newcapacity" type="number" value="<%= post.capacity%>">
+                </li>
+                <li>
+                  <button type="submit" class="btn-visit align-self-start" onclick="editEvent('<%= post._id%>')">Submit</button>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Gallery Single Section -->
+
+  </main><!-- End #main -->
+
+  <%- include('partials/footer') -%>

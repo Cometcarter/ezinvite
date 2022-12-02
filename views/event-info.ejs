@@ -1,0 +1,83 @@
+<%- include('partials/header') -%>
+
+  <main id="main" data-aos="fade" data-aos-delay="1500">
+
+    <!-- ======= End Page Header ======= -->
+    <div class="page-header d-flex align-items-center">
+      <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2>Event Info from Home Page</h2>
+            <p>Lorem ipsum dolor sit amet.</p>
+
+          </div>
+        </div>
+      </div>
+    </div><!-- End Page Header -->
+
+    <!-- ======= Gallery Single Section ======= -->
+    <section id="gallery-single" class="gallery-single">
+      <div class="container ">
+
+        <div class="row justify-content-between gy-4 mt-4">
+
+          <div class="col-lg-4">
+            <img src="<%= post.image%>">
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Event information</h3>
+
+              <ul>
+                <li><strong>Title</strong> <span>
+                    <%= post.eventtitle%>
+                  </span></li>
+                <% if (status=='attend' ) { %>
+                  <li><strong>Address</strong> <span>
+                      <%= post.address%>
+                    </span></li>
+                  <li><strong>Phone Number</strong> <span>
+                      <%= post.phonenumber%>
+                    </span></li>
+                  <% } else { %>
+                    <li><strong>Address</strong> <span>
+                        You have to have your request accepted for this to show
+                      </span></li>
+                    <li><strong>Phone Number</strong> <span>
+                        You have to have your request accepted for this to show
+                      </span></li>
+                    <% }%>
+                    
+                      <li><strong>Location</strong> <span>
+                          <%= post.location%>
+                        </span></li>
+                      <li><strong>Date</strong> <span>
+                          <%= post.date%>
+                        </span></li>
+                      <li><strong>Description</strong> <span>
+                          <%= post.description%>
+                        </span></li>
+                      <li><strong>Number of Attendees</strong> <span>
+                          <%= post.capacity%>
+                        </span></li>
+                      <li>
+                        <% if (status=='notattend' ) { %>
+                          <buttom class="btn-visit align-self-start" onclick="makeARequest('<%= post._id%>')">Request
+                            EzInvite</button>
+                            <% } else if (status=='pend' ) { %>
+                              <button class="btn-visit align-self-start" onclick="" disabled>Pending</button>
+                              <% } else { %>
+                                <button class="btn-visit align-self-start" onclick="">Attending</button>
+                                <% }%>
+                      </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Gallery Single Section -->
+
+  </main><!-- End #main -->
+
+  <%- include('partials/footer') -%>

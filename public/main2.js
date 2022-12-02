@@ -1,45 +1,114 @@
 
 
-// function editEvent(_id) {
-//   let eventtitle = prompt('Enter new Title')
-//   let eventlocation = prompt('Enter new Location')
-//   let eventdate = prompt('Choose new Date')
-//   let eventdescription = prompt('Enter new Description')
-//   let eventcapacity = prompt('Choose new Capacity')
-//   fetch('main', {
-//     method: 'put',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({
-//       '_id': _id,
-//       'eventtitle': eventtitle,
-//       'eventlocation': eventlocation,
-//       'eventdate': eventdate,
-//       'eventdescription': eventdescription,
-//       'eventcapacity': eventcapacity
-//     })
-//   })
-//     .then(response => {
-//       if (response.ok) return response.json()
-//     })
-//     .then(data => {
-//       console.log(data)
-//       window.location.reload(true)
-//     })
-// }
+function editEvent(_id) {
+  let eventtitle = document.querySelector('.newtitle').value
+  let eventlocation = document.querySelector('.newlocation').value
+  let eventdate = document.querySelector('.newdate').value
+  let eventdescription = document.querySelector('.newdescription').value
+  let eventcapacity = document.querySelector('.newcapacity').value
 
-// function deleteEvent(_id) {
-//   fetch('main', {
+  fetch('/post/edit', {
+    method: 'put',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      '_id': _id,
+      'eventtitle': eventtitle,
+      'eventlocation': eventlocation,
+      'eventdate': eventdate,
+      'eventdescription': eventdescription,
+      'eventcapacity': eventcapacity
+    })
+  })
+    .then(response => {
+      if (response.ok) return response.json()
+    })
+    .then(data => {
+      console.log(data)
+      window.location.href = `/post/${_id}`
+    })
+}
+
+function deleteEvent(_id) {
+  fetch('/post/deletePost', {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      '_id': _id
+    })
+  }).then(function (response) {
+    window.location.href = '/gallery'
+  })
+}
+function makeARequest(_id) {
+  fetch('/post/requests', {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      '_id': _id
+    })
+  }).then(function (response) {
+    window.location.href = `/eventinfo/${_id}`
+  })
+}
+function accept(postid, userid) {
+  //onclick brings you here, passes in these 2 parameters
+  fetch('/post/accept', {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      // these parameters get sent to the controller with '/post/accept' <-- route
+      '_id': postid,
+      'userid': userid
+    })
+  }).then(function (response) {
+    window.location.href = `/eventinfo/${_id}`
+  })
+}
+
+///will need to work on on monday
+
+
+// function deny(postid, userid) {
+//   //onclick brings you here, passes in these 2 parameters
+//   fetch('/post/accept', {
 //     method: 'delete',
 //     headers: {
 //       'Content-Type': 'application/json'
 //     },
 //     body: JSON.stringify({
-//       '_id': _id
+//       // these parameters get sent to the controller with '/post/accept' <-- route
+//       '_id': postid,
+//       'userid': userid
 //     })
 //   }).then(function (response) {
-//     window.location.reload(true)
+//     window.location.href = `/eventinfo/${_id}`
 //   })
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Array.from(thumbDown).forEach(function (element) {
 //   element.addEventListener('click', function () {
 //     const name = this.parentNode.parentNode.childNodes[1].innerText.trim()

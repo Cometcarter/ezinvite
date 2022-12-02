@@ -27,6 +27,10 @@ app.set("view engine", "ejs");
 //Static Folder
 app.use(express.static("public"));
 app.use(express.static(__dirname + '/views'))
+
+app.use("/post/edit", express.static(__dirname + '/public'))
+app.use("/post", express.static(__dirname + '/public'))
+app.use("/eventinfo", express.static(__dirname + '/public'))
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

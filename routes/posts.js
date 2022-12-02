@@ -5,13 +5,14 @@ const postsController = require("../controllers/posts");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Post Routes - simplified for now
-router.get("/:id", ensureAuth, postsController.getPost);
+router.get("/:id", ensureAuth, postsController.getPersonalEvent)
 //ask why /post/:id doesn't work ---!!!!!!!!!
 //it had the /post automagically
-router.post("/createPost", upload.single("file"), postsController.createPost);
-
-router.put("/likePost/:id", postsController.likePost);
-
-router.delete("/deletePost/:id", postsController.deletePost);
+router.post("/createPost", upload.single("file"), postsController.createPost)
+router.get("/edit/:id", postsController.getEdit)
+router.put("/edit", postsController.editEvent)
+router.put("/requests", postsController.sendRequest)
+router.put("/accept", postsController.accept)
+router.delete("/deletePost", postsController.deletePost)
 
 module.exports = router;

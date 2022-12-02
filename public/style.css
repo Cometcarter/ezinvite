@@ -30,5 +30,5 @@ img {
 }
 
 .modal-backdrop {
-  display: none !important;
+  position: relative !important;
 }

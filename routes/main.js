@@ -12,7 +12,7 @@ router.get("/about", homeController.getAbout);
 router.get("/services", homeController.getServices);
 router.get("/upload", homeController.getUpload);
 router.get("/profile", ensureAuth, postsController.getProfile);
-router.get("/feed", ensureAuth, postsController.getFeed);
+router.get("/eventinfo/:id", ensureAuth, postsController.getEventInfo);
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);
