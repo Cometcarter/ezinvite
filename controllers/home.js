@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   getGallery: async (req, res) => {
-    const posts = await Post.find({ user: req.user.id });
+    const posts = await Post.find({ user: req.user._id });
     res.render("gallery.ejs", {
       user: req.user,
       posts: posts

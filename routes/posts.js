@@ -13,6 +13,7 @@ router.get("/edit/:id", postsController.getEdit)
 router.put("/edit", postsController.editEvent)
 router.put("/requests", postsController.sendRequest)
 router.put("/accept", postsController.accept)
+router.put("/deny", postsController.deny)
 router.delete("/deletePost", postsController.deletePost)
 
 module.exports = router;

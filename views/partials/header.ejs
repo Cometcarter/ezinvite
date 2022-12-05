@@ -54,6 +54,10 @@
         <h1>EZinvite</h1>
       </a>
       <% if (user) { %>
+        <span>Welcome, <%= user.userName %> </span>
+          <% }%>
+      
+      <% if (user) { %>
         <nav id="navbar" class="navbar">
           <ul>
             <li><a href="/" class="active">Home</a></li>

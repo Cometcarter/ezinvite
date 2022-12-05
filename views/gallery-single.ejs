@@ -24,8 +24,37 @@
         <div class="row justify-content-between gy-4 mt-4">
 
           <div class="col-lg-4">
-            <img src="<%= post.image%>">
+
+            <div><img src="<%= post.image%>"></div>
+            <div>
+              <h3>Attendees</h3>
+              <ul>
+              <% for (let i=0; i<attendees.length; i++) {%>
+
+                <li><%= attendees[i][0]%></li>
+
+                <% } %>
+                </ul>
+            </div>
+            <br>
+            <div>
+              <ul>
+                <% for (let i=0; i<requestors.length; i++) {%>
+                  <li>
+                    <button class="btn-visit align-self-start"
+                      onclick="deny('<%= post._id%>','<%= requestors[i][1]%>')">Deny</button>
+                    <span>
+                      <%= requestors[i][0]%>
+                    </span>
+                    <button class="btn-visit align-self-start"
+                      onclick="accept('<%= post._id%>','<%= requestors[i][1]%>')">Accept</button>
+
+                  </li>
+                  <% } %>
+              </ul>
+            </div>
           </div>
+
 
           <div class="col-lg-4">
             <div class="portfolio-info">
@@ -59,23 +88,7 @@
       </div>
     </section><!-- End Gallery Single Section -->
     <section>
-      <div>
-        <ul>
-          <% for (let i=0; i<requestors.length; i++) {%>
-            <li>
-              <button class="btn-visit align-self-start"
-                onclick="deny('<%= post._id%>','<%= requestors[i][1]%>')">Deny</button>
-              <span>
-                <%= requestors[i][0]%>
-              </span>
-              <button class="btn-visit align-self-start"
-                onclick="accept('<%= post._id%>','<%= requestors[i][1]%>')">Accept</button>
 
-            </li>
-            <% } %>
-        </ul>
-
-      </div>
     </section>
   </main><!-- End #main -->
 

@@ -25,7 +25,7 @@ module.exports = {
       res.render("event-info.ejs", {
         post: post,
         user: req.user,
-        status:status
+        status: status
       })
     } catch (err) {
       console.log(err);
@@ -36,23 +36,36 @@ module.exports = {
       const post = await Post.findById(req.params.id);
       const user = await User.find()
       // grab all users
-      console.log(user)
       let requests = post.requests
+      let attendees = post.attendees
       let requestors = []
+      let listOfAttendees = []
       requests.forEach(request => {
         // we're making a '2D'/nested array (requestor) to hold username and _ID of the user requesting to be invited to the event this way the host will be able to see the name and the id will be there so the response can reach the right attendee
 
-        const userName = user.filter(x => String(x._id) == requests)
+        const userName = user.filter(x => String(x._id) == request)
         //find all the user in the array that has the matching id of this request,
-        requestors.push([userName[0].userName, request])
-
+        console.log(userName)
+        if (userName[0]) {
+          requestors.push([userName[0].userName, request])
+        }
       })
-      console.log(requestors)
-      // let attendees = post.attendees
+      attendees.forEach(attendee => {
+        // we're making a '2D'/nested array (requestor) to hold username and _ID of the user requesting to be invited to the event this way the host will be able to see the name and the id will be there so the response can reach the right attendee
+
+        const userName = user.filter(x => String(x._id) == attendee)
+        //find all the user in the array that has the matching id of this request,
+        console.log(userName)
+        if (userName[0]) {
+          listOfAttendees.push([userName[0].userName, attendee])
+        }
+      })
+
       res.render("gallery-single.ejs", {
         post: post,
         user: req.user,
-        requestors: requestors
+        requestors: requestors,
+        attendees: listOfAttendees
       })
     } catch (err) {
       console.log(err);
@@ -153,7 +166,7 @@ module.exports = {
         // now we're checking if the attendees array has the user in it already if not we're going to add it in (accepting)
         console.log(requests)
         attendees.push(req.body.userid)
-        requests = requests.filter(request => !request == req.body.userid)
+        requests = requests.filter(request => !(request == req.body.userid))
         console.log(requests)
         // removes the one we pushed to attendees from requests
       }
@@ -164,9 +177,32 @@ module.exports = {
           requests: requests
         },
       );
-      console.log("Lookin' Shiny");
-      res.redirect(`/post/${req.body._id}`)
-      //will fix later
+      console.log("Back to Post Page");
+      // res.redirect(`/post/${req.body._id}`)
+      res.send({title:'test'})
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deny: async (req, res) => {
+    console.log(req.body._id)
+    try {
+      // try says try to do this, if it works cool, if not then do the catch then continue c:
+      const post = await Post.findById(req.body._id).lean();
+      // grab the post
+      let requests = post.requests
+        requests = requests.filter(request => !(request == req.body.userid))
+        console.log(requests)
+        // removes the one we pushed to attendees from requests
+      await Post.findOneAndUpdate(
+        { _id: req.body._id },
+        {
+          requests: requests
+        },
+      );
+      console.log("Back to Post Page");
+      // res.redirect(`/post/${req.body._id}`)
+      res.send({title:'test'})
     } catch (err) {
       console.log(err);
     }

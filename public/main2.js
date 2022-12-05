@@ -67,29 +67,29 @@ function accept(postid, userid) {
       'userid': userid
     })
   }).then(function (response) {
-    window.location.href = `/eventinfo/${_id}`
+    window.location.reload()
   })
 }
 
 ///will need to work on on monday
 
 
-// function deny(postid, userid) {
-//   //onclick brings you here, passes in these 2 parameters
-//   fetch('/post/accept', {
-//     method: 'delete',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       // these parameters get sent to the controller with '/post/accept' <-- route
-//       '_id': postid,
-//       'userid': userid
-//     })
-//   }).then(function (response) {
-//     window.location.href = `/eventinfo/${_id}`
-//   })
-// }
+function deny(postid, userid) {
+  //onclick brings you here, passes in these 2 parameters
+  fetch('/post/deny', {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      // these parameters get sent to the controller with '/post/accept' <-- route
+      '_id': postid,
+      'userid': userid
+    })
+  }).then(function (response) {
+    window.location.reload()
+  })
+}
 
 
 
