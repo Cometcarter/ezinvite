@@ -5,15 +5,19 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  address: {
-    type: String,
-    required: false,
-  },
   phonenumber: {
     type: String,
     required: false,
   },
-  location: {
+  address: {
+    type: String,
+    required: false,
+  },  
+  city: {
+    type: String,
+    required: false,
+  },
+  state: {
     type: String,
     required: false,
   },

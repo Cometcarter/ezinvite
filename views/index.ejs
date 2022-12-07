@@ -5,13 +5,12 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 text-center">
-          <h2>This is <span>EzInvite</span> Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
+          <h2>This is <span>EzInvite</span> <br> Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
           <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed qui libero.
             Qui voluptas amet.</p>
           <% if (user) { %>
-            <a href="/profile" class="btn-get-started">Upload an Event</a>
+            <a href="/upload" class="btn-get-started">Upload an Event</a>
             <% } else { %>
-
               <a class="btn-get-started" href="/signup">Sign Up</a>
               <% }%>
         </div>
@@ -21,37 +20,58 @@
 
   <main id="main" data-aos="fade" data-aos-delay="1500">
 
+    <label for="state-label"> Filter by State
 
+      <form>
+        <select class="selectState" name="states">
+          <% let eventState=new Set() %>
+            <% for(let i=0; i<posts.length; i++){ %>
+              <% eventState.add(posts[i].state) %>
+                <% } %>
+                  <% for(let state of eventState){ %>
+                    <option value="<%= state %>" class="states">
+                      <%= state %>
+                    </option>
+                    <% } %>
+        </select>
+
+        <button type="button" class="btn-get-started filter search-button">Search</button>
+
+      </form>
+
+    </label>
+    <div class="choice-result"></div>
 
     <!-- ======= Gallery Section ======= -->
     <section>
-      <ul class="d-flex flex-row flex-wrap">
 
-      </ul>
       <div class="container-fluid gallery" id="gallery">
 
-        <div class="row gy-4 justify-content-center ">
-
-          <section id="gallery" class="gallery">
-            <div class="container-fluid">
-              <div class="row gy-4 justify-content-center">
-                <% for (let i=0; i<posts.length; i++) {%>
-                <div class="col-xl-3 col-lg-4 col-md-6 gallery-card">
+        <!-- <div class="row gy-4 justify-content-center "> -->
+        <section id="gallery" class="gallery">
+          <div class="container-fluid">
+            <div class="row gy-4 justify-content-center">
+              <% for (let i=0; i<posts.length; i++) {%>
+                <div class="col-xl-3 col-lg-4 col-md-6 gallery-card events <%= posts[i].state%>">
                   <div class="gallery-item h-100">
                     <img src="<%= posts[i].image%>" class="img-fluid" alt="">
                     <div class="gallery-links d-flex align-items-center justify-content-center">
                       <!-- <a href="assets/img/gallery/gallery-1.jpg" title="Gallery 1" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a> -->
                       <a href="/eventinfo/<%= posts[i]._id%>" class="details-link">
-                      <i class="fa-sharp fa-solid fa-moon"></i>
-                      <h2 class=""><%= posts[i].eventtitle%></h2>
-                      <h2 class=""><%= new Date(posts[i].date).toDateString()%></h2>
-                       </a>
+                        <i class="fa-sharp fa-solid fa-moon"></i>
+                        <h2 class="">
+                          <%= posts[i].eventtitle%>
+                        </h2>
+                        <h2 class="">
+                          <%= new Date(posts[i].date).toDateString()%>
+                        </h2>
+                      </a>
                     </div>
                   </div>
                 </div>
                 <% } %>
-          <!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
+                  <!-- End Gallery Item -->
+                  <!-- <div class="col-xl-3 col-lg-4 col-md-6">
             <div class="gallery-item h-100">
               <img src="assets/img/gallery/gallery-15.jpg" class="img-fluid" alt="">
               <div class="gallery-links d-flex align-items-center justify-content-center">
@@ -60,8 +80,8 @@
                 <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div>
-          </div><!-- End Gallery Item -->
-          <div class="col-xl-3 col-lg-4 col-md-6">
+          </div>End Gallery Item -->
+                  <!-- <div class="col-xl-3 col-lg-4 col-md-6">
             <div class="gallery-item h-100">
               <img src="assets/img/gallery/gallery-16.jpg" class="img-fluid" alt="">
               <div class="gallery-links d-flex align-items-center justify-content-center">
@@ -70,12 +90,12 @@
                 <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div>
-          </div><!-- End Gallery Item -->
+          </div>End Gallery Item -->
 
-        </div>
+            </div>
 
-      </div>
-    </section><!-- End Gallery Section -->
+          </div>
+        </section><!-- End Gallery Section -->
 
   </main><!-- End #main -->
 

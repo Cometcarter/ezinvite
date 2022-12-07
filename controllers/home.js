@@ -14,9 +14,16 @@ module.exports = {
   },
   getGallery: async (req, res) => {
     const posts = await Post.find({ user: req.user._id });
+   const allevents = await Post.find();
+   //find all events^^
+    let acceptedevents = allevents.filter(event => event.attendees.includes(req.user.id))
+    let requestedevents = allevents.filter(event => event.requests.includes(req.user.id))
+    // check if the current logged in user's id is in the attendees array
     res.render("gallery.ejs", {
       user: req.user,
-      posts: posts
+      posts: posts,
+      acceptedevents: acceptedevents,
+      requestedevents:requestedevents
     });
   },
   getAbout: (req, res) => {

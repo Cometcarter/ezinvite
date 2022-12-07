@@ -28,30 +28,36 @@
             <div><img src="<%= post.image%>"></div>
             <div>
               <h3>Attendees</h3>
-              <ul>
-              <% for (let i=0; i<attendees.length; i++) {%>
+              <ol>
+                <% for (let i=0; i<attendees.length; i++) {%>
 
-                <li><%= attendees[i][0]%></li>
+                  <li>
+                    <%= attendees[i][0]%>
+                  </li>
 
-                <% } %>
-                </ul>
+                  <% } %>
+              </ol>
             </div>
             <br>
             <div>
-              <ul>
+              <ol>
                 <% for (let i=0; i<requestors.length; i++) {%>
                   <li>
-                    <button class="btn-visit align-self-start"
-                      onclick="deny('<%= post._id%>','<%= requestors[i][1]%>')">Deny</button>
+                    <button class="button-style" id="button-style" style="background-color: rgb(44, 188, 133);
+                    color: white;
+                    border-radius: 15px;
+                    padding: 5px 30px;" onclick="deny('<%= post._id%>','<%= requestors[i][1]%>')">Deny</button>
                     <span>
                       <%= requestors[i][0]%>
                     </span>
-                    <button class="btn-visit align-self-start"
-                      onclick="accept('<%= post._id%>','<%= requestors[i][1]%>')">Accept</button>
+                    <button class="button-style" style="background-color: rgb(44, 188, 133);
+                    color: white;
+                    border-radius: 15px;
+                    padding: 5px 30px;" onclick="accept('<%= post._id%>','<%= requestors[i][1]%>')">Accept</button>
 
                   </li>
                   <% } %>
-              </ul>
+              </ol>
             </div>
           </div>
 
@@ -65,7 +71,7 @@
                     <%= post.eventtitle%>
                   </span></li>
                 <li><strong>Location</strong> <span>
-                    <%= post.location%>
+                    <%= post.city%>, <%= post.state %>
                   </span></li>
                 <li><strong>Date</strong> <span>
                     <%= post.date%>

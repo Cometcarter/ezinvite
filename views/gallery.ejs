@@ -5,10 +5,18 @@
     <!-- ======= End Page Header ======= -->
     <div class="page-header d-flex align-items-center">
       <div class="container position-relative">
+        <div>
+          <p><strong>User Name</strong>: <%= user.userName %>
+          </p>
+          <p><strong>Email</strong>: <%= user.email %>
+          </p>
+        </div>
         <div class="row d-flex justify-content-center">
           <div class="col-lg-6 text-center">
-            <h2>Latest Events</h2>
-            <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+            <h2>Profile</h2>
+            <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a
+              odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum
+              dolorem.</p>
 
 
           </div>
@@ -21,44 +29,24 @@
       <div class="container-fluid">
         <div class="row gy-4 justify-content-center">
           <% for (let i=0; i<posts.length; i++) {%>
-          <div class="col-xl-3 col-lg-4 col-md-6 gallery-card">
-            <div class="gallery-item h-100">
-              <img src="<%= posts[i].image%>" class="img-fluid" alt="">
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <!-- <a href="assets/img/gallery/gallery-1.jpg" title="Gallery 1" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a> -->
-                <a href="/post/<%= posts[i]._id%>" class="details-link">
-                <h2 class="">
-                  <%= posts[i].eventtitle%>
-                </h2>
-                 <i class="fa-sharp fa-solid fa-moon"></i></a>
+            <div class="col-xl-3 col-lg-4 col-md-6 gallery-card">
+              <div class="gallery-item h-100">
+                <img src="<%= posts[i].image%>" class="img-fluid" alt="">
+                <div class="gallery-links d-flex align-items-center justify-content-center">
+                  <!-- <a href="assets/img/gallery/gallery-1.jpg" title="Gallery 1" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a> -->
+                  <a href="/post/<%= posts[i]._id%>" class="details-link">
+                    <h2 class="">
+                      <%= posts[i].eventtitle%>
+                    </h2>
+                    <i class="fa-sharp fa-solid fa-moon"></i>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-          <% } %>
+            <% } %>
 
-          
-          <!-- End Gallery Item -->
-          <!-- <div class="col-xl-3 col-lg-4 col-md-6">
-            <div class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-14.jpg" class="img-fluid" alt="">
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a href="assets/img/gallery/gallery-14.jpg" title="Gallery 14" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div> -->
-          <!-- End Gallery Item -->
-          <!-- <div class="col-xl-3 col-lg-4 col-md-6">
-            <div class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery-15.jpg" class="img-fluid" alt="">
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a href="assets/img/gallery/gallery-15.jpg" title="Gallery 15" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div> -->
-          <!-- End Gallery Item -->
-          <!-- <div class="col-xl-3 col-lg-4 col-md-6">
+              <!-- TEST GALLERY CARD
+            <div class="col-xl-3 col-lg-4 col-md-6">
             <div class="gallery-item h-100">
               <img src="assets/img/gallery/gallery-16.jpg" class="img-fluid" alt="">
               <div class="gallery-links d-flex align-items-center justify-content-center">
@@ -67,13 +55,51 @@
               </div>
             </div>
           </div> -->
-          <!-- End Gallery Item -->
+              <!-- End Gallery Item -->
 
         </div>
-
       </div>
     </section><!-- End Gallery Section -->
 
-  </main><!-- End #main -->
+    <section class="listofevents">
 
-  <%- include('partials/footer') -%>
+      <div class="accepted gallery-left">
+        <h2 class="line-break">Attending</h2>
+        <% for (let i=0; i<acceptedevents.length; i++) {%>
+          <div class="col-lg-6">
+            <div class="event-item d-flex justify-content-around">
+              <span>
+                <%= acceptedevents[i].eventtitle%>
+              </span>
+              <span>
+                <%= new Date(acceptedevents[i].date).toDateString()%>
+              </span>
+            </div>
+          </div>
+
+          <% } %>
+      </div>
+      <div class="requested gallery-right">
+        <h2 class="line-break">Requested</h2>
+        <% for (let i=0; i<requestedevents.length; i++) {%>
+          <div class="col-lg-6">
+            <div class="event-item d-flex justify-content-around">
+              <span>
+                <%= requestedevents[i].eventtitle%>
+              </span>
+              <span>
+                <%= new Date(requestedevents[i].date).toDateString()%>
+              </span>
+            </div>
+          </div>
+          <% } %>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="row gy-4 gx-lg-5">
+
+
+
+    <%- include('partials/footer') -%>

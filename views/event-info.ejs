@@ -34,23 +34,23 @@
                     <%= post.eventtitle%>
                   </span></li>
                 <% if (status=='attend' ) { %>
+                  <li><strong>Phone Number</strong> <span>
+                      <%= post.phonenumber%>
+                    </span></li>
                   <li><strong>Address</strong> <span>
                       <%= post.address%>
-                    </span></li>
-                  <li><strong>Phone Number</strong> <span>
-                      <%= post.phoneNumber%>
-                    </span></li>
+                    </span></li>                  
                   <% } else { %>
-                    <li><strong>Address</strong> <span>
-                        You have to have your request accepted for this to show
-                      </span></li>
                     <li><strong>Phone Number</strong> <span>
                         You have to have your request accepted for this to show
                       </span></li>
+                    <li><strong>Address</strong> <span>
+                        You have to have your request accepted for this to show
+                      </span></li>                    
                     <% }%>
                     
                       <li><strong>Location</strong> <span>
-                          <%= post.location%>
+                          <%= post.city%> , <%= post.state%>
                         </span></li>
                       <li><strong>Date</strong> <span>
                           <%= post.date%>

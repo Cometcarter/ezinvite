@@ -8,7 +8,10 @@ module.exports = {
       const post = await Post.find({ user: req.user.id });
       //we're inside the controller, here on line 7 the controller is using the model
       //its saying only find the post with the id that is equal to the logged in user's id
-      res.render("gallery.ejs", { post: post, user: req.user });
+      res.render("gallery.ejs", { 
+        post: post, 
+        user: req.user, 
+      })
     } catch (err) {
       console.log(err);
     }
@@ -89,9 +92,10 @@ module.exports = {
 
       await Post.create({
         eventtitle: req.body.eventtitle,
+        phonenumber: req.body.phonenumber,
         address: req.body.address,
-        phoneNumber: req.body.phoneNumber,
-        location: req.body.location,
+        city: req.body.city,
+        state: req.body.state,
         cloudinaryId: result.public_id,
         image: result.secure_url,
         date: req.body.date,
@@ -115,8 +119,9 @@ module.exports = {
         {
           eventtitle: req.body.eventtitle,
           address: req.body.address,
-          phoneNumber: req.body.phoneNumber,
-          location: req.body.eventlocation,
+          phonenumber: req.body.phonenumber,
+          city: req.body.eventcity,
+          state: req.body.eventstate,
           date: req.body.eventdate,
           description: req.body.eventdescription,
           capacity: req.body.eventcapacity,
@@ -179,7 +184,7 @@ module.exports = {
       );
       console.log("Back to Post Page");
       // res.redirect(`/post/${req.body._id}`)
-      res.send({title:'test'})
+      res.send({ title: 'test' })
     } catch (err) {
       console.log(err);
     }
@@ -188,12 +193,12 @@ module.exports = {
     console.log(req.body._id)
     try {
       // try says try to do this, if it works cool, if not then do the catch then continue c:
-      const post = await Post.findById(req.body._id).lean();
+      const post = await Post.findById(req.body._id).lean()
       // grab the post
       let requests = post.requests
-        requests = requests.filter(request => !(request == req.body.userid))
-        console.log(requests)
-        // removes the one we pushed to attendees from requests
+      requests = requests.filter(request => !(request == req.body.userid))
+      console.log(requests)
+      // removes the one we pushed to attendees from requests
       await Post.findOneAndUpdate(
         { _id: req.body._id },
         {
@@ -202,7 +207,7 @@ module.exports = {
       );
       console.log("Back to Post Page");
       // res.redirect(`/post/${req.body._id}`)
-      res.send({title:'test'})
+      res.send({ title: 'test' })
     } catch (err) {
       console.log(err);
     }
