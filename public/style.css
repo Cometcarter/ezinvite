@@ -7,6 +7,10 @@ img {
   height: 200px;
 }
 
+#about-img {
+  height: auto;
+}
+
 .gallery-card {
   max-height: 245px;
 }
@@ -25,10 +29,31 @@ img {
   display: none;
 }
 
+.login-button {
+  color: white;
+  background-color: rgb(31, 133, 94);
+  padding: 8px 10px;
+  border-radius: 20px
+  
+}
+.login-button:hover {
+  color: white;
+  background-color: rgb(104, 203, 165);
+  padding: 8px 10px;
+  border-radius: 20px
+
+}
+
 /* SIGNUP */
 .signup-button {
   color: white;
   background-color: rgb(31, 133, 94);
+  padding: 8px 10px;
+  border-radius: 20px
+}
+.signup-button:hover {
+  color: white;
+  background-color: rgb(104, 203, 165);
   padding: 8px 10px;
   border-radius: 20px
 }

@@ -159,7 +159,6 @@ module.exports = {
     }
   },
   accept: async (req, res) => {
-    console.log(req.body._id)
     try {
       // try says try to do this, if it works cool, if not then do the catch then continue c:
       const post = await Post.findById(req.body._id).lean();
@@ -169,10 +168,8 @@ module.exports = {
       // vvvv this is looking (spongbob eyes) at the user that logged in so we need to change that 
       if (!attendees.includes(`${req.body.userid}`) && requests.includes(`${req.body.userid}`)) {
         // now we're checking if the attendees array has the user in it already if not we're going to add it in (accepting)
-        console.log(requests)
         attendees.push(req.body.userid)
         requests = requests.filter(request => !(request == req.body.userid))
-        console.log(requests)
         // removes the one we pushed to attendees from requests
       }
       await Post.findOneAndUpdate(

@@ -8,6 +8,7 @@ exports.getLogin = (req, res) => {
   }
   res.render("login", {
     title: "Login",
+    user: req.user
   });
 };
 
@@ -39,7 +40,7 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/");
+      res.redirect(req.session.returnTo || "/gallery");
     });
   })(req, res, next);
 };
