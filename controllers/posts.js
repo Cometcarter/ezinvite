@@ -114,6 +114,7 @@ module.exports = {
   editEvent: async (req, res) => {
     console.log(req.body._id)
     try {
+            // try says try to do this, if it works cool, if not then do the catch then continue c:
       await Post.findOneAndUpdate(
         { _id: req.body._id },
         {
@@ -138,9 +139,7 @@ module.exports = {
     //req.params._id is hold the id the post;; id variable must match route
     try {
       const post = await Post.findById(req.body._id).lean();
-      //finding the post 
       let requests = post.requests
-      // declaring the variable to represent the request array
       if (!requests.includes(`${req.user._id}`)) {
         // if statement only add it if it's inside
         requests.push(req.user._id)
@@ -160,17 +159,12 @@ module.exports = {
   },
   accept: async (req, res) => {
     try {
-      // try says try to do this, if it works cool, if not then do the catch then continue c:
       const post = await Post.findById(req.body._id).lean();
-      // grab the post
       let requests = post.requests
       let attendees = post.attendees
-      // vvvv this is looking (spongbob eyes) at the user that logged in so we need to change that 
       if (!attendees.includes(`${req.body.userid}`) && requests.includes(`${req.body.userid}`)) {
-        // now we're checking if the attendees array has the user in it already if not we're going to add it in (accepting)
         attendees.push(req.body.userid)
         requests = requests.filter(request => !(request == req.body.userid))
-        // removes the one we pushed to attendees from requests
       }
       await Post.findOneAndUpdate(
         { _id: req.body._id },
@@ -189,13 +183,10 @@ module.exports = {
   deny: async (req, res) => {
     console.log(req.body._id)
     try {
-      // try says try to do this, if it works cool, if not then do the catch then continue c:
       const post = await Post.findById(req.body._id).lean()
-      // grab the post
       let requests = post.requests
       requests = requests.filter(request => !(request == req.body.userid))
-      console.log(requests)
-      // removes the one we pushed to attendees from requests
+
       await Post.findOneAndUpdate(
         { _id: req.body._id },
         {
